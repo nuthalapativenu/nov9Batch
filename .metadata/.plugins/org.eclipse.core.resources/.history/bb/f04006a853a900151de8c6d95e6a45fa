@@ -1,0 +1,27 @@
+package day1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeTest;
+
+public class LinkTesting2 {
+	FirefoxDriver driver;
+	@BeforeTest
+	public void SetUp()
+	{
+		driver=new FirefoxDriver();
+		driver.get("http://google.com");
+		String expurl="Gmail";
+		driver.findElement(By.linkText("Gmail")).click();
+		String acturl=driver.getTitle();
+		if(expurl.equals(acturl))
+		{
+			System.out.println("Gmail link Working Correctly");
+		}
+		else {
+
+			System.out.println("Gmail link Working Correctly");
+		}
+	}
+
+}

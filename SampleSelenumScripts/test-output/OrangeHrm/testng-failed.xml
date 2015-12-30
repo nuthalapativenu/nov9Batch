@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [OrangeHrm]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="day6.AddEmplyoee">
+        <methods>
+          <include name="AddEmp"/>
+        </methods>
+      </class> <!-- day6.AddEmplyoee -->
+      <class name="day6.LogOut">
+        <methods>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- day6.LogOut -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [OrangeHrm] -->

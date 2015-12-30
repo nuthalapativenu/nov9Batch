@@ -1,0 +1,76 @@
+package day5;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+
+
+public class NodeaAndHubs {
+	@Parameters("browser")
+	@Test
+	public void CalanderTest(String b) throws MalformedURLException 
+	{
+		DesiredCapabilities cap=null;
+		if(b.equals("firefox"))
+		{
+			cap=DesiredCapabilities.firefox();
+			cap.setBrowserName("Firefox");
+			cap.setPlatform(Platform.WINDOWS);
+		}
+		else if(b.equals("chrome"))
+		{
+			cap=DesiredCapabilities.chrome();
+			cap.setBrowserName("Chrome");
+			cap.setPlatform(Platform.ANY);
+		}
+		RemoteWebDriver driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
+	driver.findElement(By.id("FromTag")).sendKeys("Hyderabad, IN - Rajiv Gandhi International (HYD)");
+		driver.findElement(By.id("ToTag")).sendKeys("New York, US - John F Kennedy (JFK)");
+		driver.findElement(By.xpath("//*[@id='ORtrip']/section[2]/div[1]/dl/dd/div/a/i")).click();
+		String doj="23/10/2017";
+		String[]a=doj.split("/");
+		String[] months={"January","February","March","April","May","June","July","August","September","October","November","December"};
+		int x=Integer.parseInt(a[1]);
+		String month=months[x-1];
+		String year=a[2];
+		String day=a[0];
+		String calyear=driver.findElement(By.className("ui-datepicker-year")).getText();
+		while(!calyear.equals(year))
+		{
+			driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[2]/div/a")).click();
+			calyear=driver.findElement(By.className("ui-datepicker-year")).getText();
+		}
+		String calmonth=driver.findElement(By.className("ui-datepicker-month")).getText();
+		while(!calmonth.equals(month))
+		{
+			driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[2]/div/a")).click();
+			calmonth=driver.findElement(By.className("ui-datepicker-month")).getText();
+		}
+		WebElement table=driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[1]"));
+		List<WebElement> rows=table.findElements(By.tagName("tr"));
+		for(int i=0;i<rows.size();i++)
+		{
+			List<WebElement> cols=rows.get(i).findElements(By.tagName("td"));
+			for(int j=0;j<cols.size();j++)
+			{
+				if(cols.get(j).getText().equals(day))
+				{
+					cols.get(j).click();
+					//System.out.println(cols.get(j).getText());
+				
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,15 @@
+package day6;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeTest;
+
+public class ExcelOperations {
+	FirefoxDriver driver;
+	@BeforeTest
+	public void Setup()
+	{
+		driver =new FirefoxDriver();
+		driver.get("http://newtours.demoaut.com");
+	}
+
+}

@@ -1,0 +1,45 @@
+package day5;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class DyanamicCalanderTest {
+	FirefoxDriver driver;
+	@BeforeTest
+	public void Setup()
+	{
+		driver=new FirefoxDriver();
+		driver.get("http://cleartrip.com");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+	}
+	@Test
+	public void DynamicCalTest()
+	{
+		driver.findElement(By.id("OneWay")).sendKeys("Hyderabad, IN - Rajiv Gandhi International (HYD)");
+		driver.findElement(By.id("ToTag")).sendKeys("New York, US - John F Kennedy (JFK)");
+		driver.findElement(By.xpath("//*[@id='ORtrip']/section[2]/div[1]/dl/dd/div/a/i")).click();
+		String doj="23/10/2017";
+		String[]a=doj.split("/");
+		String[] months={"January","February","March","April","May","June","July","August","September","October","November","December"};
+		int x=Integer.parseInt(a[1]);
+		String month=months[x-1];
+		String year=a[2];
+		String day=a[0];
+		String calyear=driver.findElement(By.className("ui-datepicker-year")).getText();
+		while(!calyear.equals(year))
+		{
+			driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[2]/div/a")).click();
+			calyear=driver.findElement(By.className("ui-datepicker-year")).getText();
+		}
+		
+		
+		
+		
+	}
+
+}

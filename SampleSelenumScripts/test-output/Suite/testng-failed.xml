@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="none">
+  <test name="Test(failed)" parallel="none">
+    <classes>
+      <class name="day6.LogOut">
+        <methods>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- day6.LogOut -->
+      <class name="day6.ExcelOperations">
+        <methods>
+          <include name="Setup"/>
+        </methods>
+      </class> <!-- day6.ExcelOperations -->
+      <class name="day6.AddEmplyoee">
+        <methods>
+          <include name="AddEmp"/>
+        </methods>
+      </class> <!-- day6.AddEmplyoee -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

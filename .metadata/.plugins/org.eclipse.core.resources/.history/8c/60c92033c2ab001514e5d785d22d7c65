@@ -1,0 +1,14 @@
+<TestSuite name="GridDemo">
+<Test name="On chrome">
+<parameter name="browser" value="chrome"/>
+<classes>
+<class name="day1.LinkTesting1"/>
+</classes>
+</Test>
+<Test name="On firefox">
+<parameter name="browser" value="firefox"/>
+<classes>
+<class name="day1.LinkTesting1"/>
+</classes>
+</Test>
+</TestSuite>
